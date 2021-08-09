@@ -1,23 +1,14 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import utils.TestData;
 import static io.qameta.allure.Allure.step;
 
-public class StudentRegistrationTest {
-
-    @BeforeAll
-    static void setup(){
-        Configuration.startMaximized = true;
-        Configuration.browser = "safari";
-    }
+public class StudentRegistrationTest extends TestBase {
 
     @Test
     void fillingAndSubmittingForm(){
         StudentRegPage studentRegPage = new StudentRegPage();
-
         TestData testData = new TestData();
 
         step("Open main page" , studentRegPage::openPage);
@@ -37,7 +28,5 @@ public class StudentRegistrationTest {
         step("Input city" , () -> studentRegPage.inputCity(testData.city));
         step("Submit form" , studentRegPage::clickSubmit);
         step("Check results" , () -> studentRegPage.checkOutcome(testData));
-
-
     }
 }
