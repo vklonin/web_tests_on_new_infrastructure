@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import utils.Attach;
+import static config.Credentials.credentialsConfig;
 
 public class TestBase {
 
@@ -20,7 +21,7 @@ public class TestBase {
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = "https://"+ credentialsConfig.login() +":"+ credentialsConfig.password() + "@" + System.getProperty("remoteWD"); //"https://user1:1234@selenoid.autotests.cloud/wd/hub/";
     }
 
     @AfterEach
