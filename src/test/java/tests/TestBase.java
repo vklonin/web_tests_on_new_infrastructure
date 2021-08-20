@@ -16,12 +16,14 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("browser_version", "88.0");
         capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+        //capabilities.setCapability("enableVideo", true);
 
         Configuration.browserCapabilities = capabilities;
         Configuration.startMaximized = true;
-        Configuration.remote = "https://"+ credentialsConfig.login() +":"+ credentialsConfig.password() + "@" + System.getProperty("remoteWD"); //"https://user1:1234@selenoid.autotests.cloud/wd/hub/";
+        Configuration.remote = "http://206.81.26.147:4444/wd/hub/"; //System.getProperty("remoteWD");
+        System.out.printf(Configuration.remote);//"https://user1:1234@selenoid.autotests.cloud/wd/hub/";
     }
 
     @AfterEach
@@ -29,6 +31,6 @@ public class TestBase {
         Attach.screenshotAs("last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+        //Attach.addVideo();
     }
 }
